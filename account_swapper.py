@@ -11,8 +11,8 @@ def open_exe_with_param(param):
     pathenv = os.getenv('LOCALAPPDATA')
     dir_path = pathenv + r'\riot_thing'
     db = TinyDB(dir_path + r'\db.json')
-    print(db.all()[param]['user'])
-    print(db.all()[param]['pass'])
+    #print(db.all()[param]['user'])
+    #print(db.all()[param]['pass'])
     
     try:
         # Launch the executable with the given parameter
@@ -83,7 +83,7 @@ def create_gui():
         dir_path = pathenv + r'\riot_thing'
         db = TinyDB(dir_path + r'\db.json')
         USER_INP = simpledialog.askstring(title="New account", prompt="Input data in this format:  display name,username,password:")
-        
+        # add error checking I guess
         user_list = USER_INP.split(',')
         db.insert({'name': user_list[0], 'user': user_list[1], 'pass': user_list[2]})
         root.destroy()
@@ -92,6 +92,7 @@ def create_gui():
     root.mainloop()
 
 def check_for_db():
+    # old code to check
     pathenv = os.getenv('LOCALAPPDATA')
     dir_path = pathenv + r'\riot_thing'
     if not os.path.exists(dir_path):
