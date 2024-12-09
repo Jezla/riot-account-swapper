@@ -60,20 +60,19 @@ def create_gui():
     dir_path = pathenv + r'\riot_thing'
     db = TinyDB(dir_path + r'\db.json')
     for i in db.all():
-        print(i)
+        print("asd")
     button_configs = [(db.all()[i]['name'], i) for i in range(len(db.all()))]
-        
-
+    
+    if len(db.all()) > 0:
     # Create buttons dynamically
-    for text, param in button_configs:
-        btn = tk.Button(topFrame, width=15, text=text, command=lambda p=param: open_exe_with_param(p))
-        btn.pack(pady=8)
+        for text, param in button_configs:
+            btn = tk.Button(topFrame, width=15, text=text, command=lambda p=param: open_exe_with_param(p))
+            btn.pack(pady=8)
     
     btn1 = tk.Button(bottomFrame, width=15, text="Add Account", command=lambda: add_account())
-    btn.pack(pady=8)
-    
+
     btn2 = tk.Button(bottomFrame, width=15, text="Exit", command=root.destroy)
-    btn.pack(pady=8)
+
     
     btn1.grid(column=0, row = 1, padx=10, pady=10)
     btn2.grid(column=1, row = 1, padx=10, pady=10)
@@ -103,5 +102,5 @@ def check_for_db():
 
 
 if __name__ == "__main__":
-    #check_for_db()
+    check_for_db()
     create_gui()
